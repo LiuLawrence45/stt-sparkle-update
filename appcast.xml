@@ -3,12 +3,12 @@
     <channel>
         <title>WillowMac</title>
         <item>
-            <title>1.0.0</title>
-            <pubDate>Wed, 05 Feb 2025 21:19:11 -0800</pubDate>
+            <title>1.0.1</title>
+            <pubDate>Wed, 05 Feb 2025 21:42:54 -0800</pubDate>
             <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/prod/Willow.Installer.dmg" length="14432761" type="application/octet-stream" sparkle:edSignature="9X1g09DuJj1kuVk1Sekc3ZyA/mrbGnTDvz53ZKjqbQTo3HQLtmVbwW51xsKG1KZd0feIwtwFZVFiMDzOYyO1CA=="/>
+            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v1.0.1/Willow.Installer.dmg" length="14432780" type="application/octet-stream" sparkle:edSignature="9piH7l3DfRAqKDBHAGeDl+DmYCbcZwqt76lhVc1u6GwJLoq17Cc6oX/ie+UCcrKFlDkeUjsI93gWeB9GKfnfBg=="/>
         </item>
     </channel>
 </rss>
