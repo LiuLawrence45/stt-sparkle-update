@@ -3,6 +3,7 @@ name: Update Latest DMG on GitHub Pages
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   update-pages:
@@ -41,9 +42,10 @@ jobs:
 
       - name: Copy DMG to pages directory
         run: |
-          # Adjust the destination path if needed.
-          cp "Willlow Installer.dmg" ./Willlow\ Installer.dmg
-          git add ./Willlow\ Installer.dmg
+          # Remove the existing file to avoid conflicts
+          rm -f "./Willlow Installer.dmg"
+          cp "Willlow Installer.dmg" "./Willlow Installer.dmg"
+          git add "./Willlow Installer.dmg"
 
       - name: Commit and push update
         run: |
@@ -51,3 +53,4 @@ jobs:
           git push origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
