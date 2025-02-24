@@ -20,17 +20,17 @@ jobs:
         run: |
           # Get the JSON for the latest release
           RELEASE_JSON=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest)
-          # Extract the asset URL for "Willow Installer.dmg"
-          ASSET_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "Willow Installer.dmg") | .url')
+          # Extract the asset URL for "Willow.Installer.dmg"
+          ASSET_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "Willow.Installer.dmg") | .url')
           if [ -z "$ASSET_URL" ]; then
-            echo "No asset named 'Willow Installer.dmg' found"
+            echo "No asset named 'Willow.Installer.dmg' found"
             exit 1
           fi
           echo "asset_url=$ASSET_URL" >> $GITHUB_OUTPUT
 
       - name: Download the DMG asset
         run: |
-          curl -L -H "Accept: application/octet-stream" "${{ steps.get_asset.outputs.asset_url }}" -o "Willow Installer.dmg"
+          curl -L -H "Accept: application/octet-stream" "${{ steps.get_asset.outputs.asset_url }}" -o "Willow.Installer.dmg"
 
       - name: Checkout GitHub Pages branch
         run: |
@@ -43,9 +43,9 @@ jobs:
       - name: Copy DMG to pages directory
         run: |
           # Remove the existing file to avoid conflicts
-          rm -f "./Willow Installer.dmg"
-          cp "Willow Installer.dmg" "./Willow Installer.dmg"
-          git add "./Willow Installer.dmg"
+          rm -f "./Willow.Installer.dmg"
+          cp "Willow.Installer.dmg" "./Willow.Installer.dmg"
+          git add "./Willow.Installer.dmg"
 
       - name: Commit and push update
         run: |
