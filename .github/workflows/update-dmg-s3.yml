@@ -1,0 +1,52 @@
+name: Update Latest DMG on S3
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  update-s3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Get Latest Release Asset URL
+        id: get_asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch the JSON for the latest release with authentication
+          RELEASE_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest)
+          # Extract the asset URL for "Willow.Installer.dmg"
+          ASSET_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "Willow.Installer.dmg") | .url')
+          if [ -z "$ASSET_URL" ]; then
+            echo "No asset named 'Willow.Installer.dmg' found"
+            exit 1
+          fi
+          echo "asset_url=$ASSET_URL" >> $GITHUB_OUTPUT
+
+      - name: Download DMG Asset
+        run: |
+          curl -L -H "Accept: application/octet-stream" "${{ steps.get_asset.outputs.asset_url }}" -o "Willow.Installer.dmg"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload DMG to S3
+        run: |
+          # Define your S3 key (folder is "latest", file name is constant)
+          S3_KEY="latest/Willow.Installer.dmg"
+          # Upload file with public-read ACL so it's publicly accessible (adjust as needed)
+          aws s3 cp Willow.Installer.dmg s3://${{ secrets.AWS_S3_BUCKET }}/$S3_KEY --acl public-read
+
+      - name: Output S3 URL
+        run: |
+          S3_URL="https://${{ secrets.AWS_S3_BUCKET }}.s3.amazonaws.com/latest/Willow.Installer.dmg"
+          echo "The DMG file is available at: $S3_URL"
+
