@@ -19,9 +19,11 @@ jobs:
 
       - name: Get latest release asset URL
         id: get_asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Get the JSON for the latest release
-          RELEASE_JSON=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest)
+          # Fetch the JSON for the latest release (with authentication)
+          RELEASE_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest)
           # Extract the asset URL for "Willow.Installer.dmg"
           ASSET_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name == "Willow.Installer.dmg") | .url')
           if [ -z "$ASSET_URL" ]; then
@@ -34,11 +36,13 @@ jobs:
         run: |
           curl -L -H "Accept: application/octet-stream" "${{ steps.get_asset.outputs.asset_url }}" -o "Willow.Installer.dmg"
 
-      - name: Update file in main branch
+      - name: Move DMG to temporary location
+        run: mv "Willow.Installer.dmg" /tmp/Willow.Installer.dmg
+
+      - name: Copy DMG from TMP back to main branch
         run: |
-          # Remove any existing file to avoid conflicts
-          rm -f "./Willow.Installer.dmg"
-          # The downloaded file is already in the working directory; add it to Git
+          # Copy the file from /tmp back into the current directory
+          cp /tmp/Willow.Installer.dmg "./Willow.Installer.dmg"
           git add "./Willow.Installer.dmg"
 
       - name: Commit and push update to main
