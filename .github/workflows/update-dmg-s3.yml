@@ -43,7 +43,8 @@ jobs:
           # Define your S3 key (folder is "latest", file name is constant)
           S3_KEY="latest/Willow.Installer.dmg"
           # Upload file with public-read ACL so it's publicly accessible (adjust as needed)
-          aws s3 cp Willow.Installer.dmg s3://${{ secrets.AWS_S3_BUCKET }}/$S3_KEY --acl public-read
+          aws s3 cp Willow.Installer.dmg s3://${{ secrets.AWS_S3_BUCKET }}/$S3_KEY
+
 
       - name: Output S3 URL
         run: |
