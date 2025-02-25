@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up jq
         run: sudo apt-get install -y jq
@@ -33,7 +35,9 @@ jobs:
           curl -L -H "Accept: application/octet-stream" "${{ steps.get_asset.outputs.asset_url }}" -o "Willow.Installer.dmg"
 
       - name: Move DMG to temporary location
-        run: mv "Willow.Installer.dmg" /tmp/
+        run: |
+          # Move the downloaded file to /tmp so it persists after branch checkout
+          mv "Willow.Installer.dmg" /tmp/Willow.Installer.dmg
 
       - name: Checkout or create GitHub Pages branch
         env:
@@ -57,9 +61,9 @@ jobs:
 
       - name: Copy DMG to pages directory
         run: |
-          # Remove the existing file to avoid conflicts
+          # Remove the existing file if any
           rm -f "./Willow.Installer.dmg"
-          # Copy the DMG from the temporary location into the current directory
+          # Copy the file from the temporary location into the current working directory
           cp /tmp/Willow.Installer.dmg "./Willow.Installer.dmg"
           git add "./Willow.Installer.dmg"
 
@@ -68,4 +72,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git commit -m "Update latest DMG from release ${{ github.ref_name }}" || echo "No changes to commit"
-          git push origin gh-pages
+          git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
