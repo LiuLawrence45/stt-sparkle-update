@@ -8,7 +8,7 @@
             <sparkle:version>1.8.4.2</sparkle:version>
             <sparkle:shortVersionString>1.8.4.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v1.8.4.1/Willow.Installer.dmg" length="31980516" type="application/octet-stream" sparkle:edSignature="NVMuegr6a/W66m6/kShBLyqwVqwvR7U+eBX8c1H3Z+e0FJrM5n7ioOdgSvvsnz8yLgDbEDNhRA+nutiJlZ4CCg=="/>
+            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v1.8.4.2/Willow.Installer.dmg" length="31980516" type="application/octet-stream" sparkle:edSignature="NVMuegr6a/W66m6/kShBLyqwVqwvR7U+eBX8c1H3Z+e0FJrM5n7ioOdgSvvsnz8yLgDbEDNhRA+nutiJlZ4CCg=="/>
         </item>
     </channel>
 </rss>
