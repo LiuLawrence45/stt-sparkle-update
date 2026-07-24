@@ -3,12 +3,12 @@
     <channel>
         <title>Willow Voice</title>
         <item>
-            <title>2.3.4</title>
-            <pubDate>Wed, 22 Jul 2026 21:16:37 -0700</pubDate>
-            <sparkle:version>2.3.4</sparkle:version>
-            <sparkle:shortVersionString>2.3.4</sparkle:shortVersionString>
+            <title>2.3.5</title>
+            <pubDate>Fri, 24 Jul 2026 10:52:58 -0700</pubDate>
+            <sparkle:version>2.3.5</sparkle:version>
+            <sparkle:shortVersionString>2.3.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v2.3.4/Willow.Installer.dmg" length="75794826" type="application/octet-stream" sparkle:edSignature="8h2Ovp4gkJGYzzpxjmItEavok9+yg3kCfr59ZKhqgyOZJjp4r2A8Us1K83ZFU0kbP3KGUbs+cYZVPiann+ScBw=="/>
+            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v2.3.5/Willow.Installer.dmg" length="75265347" type="application/octet-stream" sparkle:edSignature="TL2C4d8wHV59yrgm4On6Q3FAbExMt7zHo3SWDy/EmqaNpqWhnQPWSSRC+VONFDFidYNvQ/AJNXi3mCFvDcGMDQ=="/>
         </item>
     </channel>
 </rss>
