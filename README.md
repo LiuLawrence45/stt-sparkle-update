@@ -22,7 +22,10 @@ Configure repository variable `R2_ACCOUNT_ID`, and encrypted repository secrets
 and Write on `willow-downloads`. The workflow also needs permission to push
 `appcast.xml` to `main`; a rejected push stops promotion of the latest installer.
 
-Run the workflow manually to seed the current release. Before updating Framer,
+Manual runs default to verification only: they upload and verify the versioned
+installer without changing the feed or website latest. Run with `publish` enabled
+to promote the current release. Release pushes promote automatically.
+Before updating Framer,
 verify HTTP 200, the expected size and SHA-256, a warmed `CF-Cache-Status: HIT`,
 and HTTP 206 for a byte-range request. Compare repeated full downloads with the
 S3 URL on the affected network. Confirm the latest URL returns the intended release.

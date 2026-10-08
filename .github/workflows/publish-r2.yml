@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths: [appcast.xml]
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Update the public appcast and website latest installer after verification
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,4 +37,5 @@ jobs:
           R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
           R2_BUCKET_NAME: willow-downloads
           R2_PUBLIC_URL: https://downloads.willowvoice.com
+          PUBLISH_RELEASE: ${{ github.event_name == 'push' || inputs.publish }}
         run: bash scripts/publish-r2.sh

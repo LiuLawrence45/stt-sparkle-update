@@ -91,6 +91,12 @@ curl --fail --silent --show-error --location --retry 3 --max-time 180 \
   "$download_url" --output "$work_dir/public.dmg"
 cmp "$work_dir/Willow.Installer.dmg" "$work_dir/public.dmg"
 
+# Manual verification can exercise real uploads without promoting a public release.
+if [[ "${PUBLISH_RELEASE:-true}" != "true" ]]; then
+  echo "Verified $download_url; leaving the appcast and website latest unchanged."
+  exit 0
+fi
+
 # A release published during the transfer must keep its newer appcast and latest link.
 git fetch origin main
 if [[ "$feed_blob" != "$(git rev-parse origin/main:appcast.xml)" ]]; then
