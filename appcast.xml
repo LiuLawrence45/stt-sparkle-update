@@ -8,7 +8,7 @@
             <sparkle:version>2.6.8</sparkle:version>
             <sparkle:shortVersionString>2.6.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/LiuLawrence45/stt-sparkle-update/releases/download/v2.6.8/Willow.Installer.dmg" length="62143368" type="application/octet-stream" sparkle:edSignature="yGG96bAlYRffJb0PvW2Gdf9T2W9+hSD/JzSvIi6xqzQMj0bc6CdO11Amwi712UZhT/pxRRtKH8jHxRNBcVQ5BA==" />
+            <enclosure url="https://downloads.willowvoice.com/mac/v2.6.8/Willow.Installer.dmg" length="62143368" type="application/octet-stream" sparkle:edSignature="yGG96bAlYRffJb0PvW2Gdf9T2W9+hSD/JzSvIi6xqzQMj0bc6CdO11Amwi712UZhT/pxRRtKH8jHxRNBcVQ5BA==" />
         </item>
     </channel>
 </rss>
